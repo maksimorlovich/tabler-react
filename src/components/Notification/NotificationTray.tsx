@@ -31,7 +31,7 @@ function NotificationTray(props: Props) {
   return (
     <Dropdown
       triggerAs={Nav.Link}
-      triggerContent={unread && <span className="nav-unread" />}
+      triggerContent={unread && <span className="badge bg-red" />}
       toggle={false}
       icon="bell"
       isNavLink={true}

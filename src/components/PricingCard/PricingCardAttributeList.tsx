@@ -7,10 +7,8 @@ type Props = {
 };
 
 function PricingCardAttributeList({ className, children }: Props) {
-  const classes = cn("list-unstyled", "leading-loose", className);
+  const classes = cn("list-unstyled", "lh-lg", className);
   return <ul className={classes}>{children}</ul>;
 }
-
-
 
 export default PricingCardAttributeList;

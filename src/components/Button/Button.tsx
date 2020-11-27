@@ -16,6 +16,7 @@ interface Props {
   RootComponent?: React.ElementType;
   size?: "sm" | "lg";
   outline?: boolean;
+  ghost?: boolean;
   link?: boolean;
   block?: boolean;
   disabled?: boolean;
@@ -25,6 +26,7 @@ interface Props {
   icon?: string;
   social?: string;
   loading?: boolean;
+  active?: boolean;
   tabIndex?: number;
   isDropdownToggle?: boolean;
   to?: string;
@@ -44,6 +46,7 @@ const Button = forwardRef(function<AS extends HTMLElement = HTMLButtonElement>(
   {
     size,
     outline,
+    ghost,
     link,
     block,
     className,
@@ -54,6 +57,7 @@ const Button = forwardRef(function<AS extends HTMLElement = HTMLButtonElement>(
     icon,
     social = "",
     loading,
+    active,
     isDropdownToggle,
     isOption,
     RootComponent,
@@ -69,16 +73,19 @@ const Button = forwardRef(function<AS extends HTMLElement = HTMLButtonElement>(
       [`btn-${size}`]: !!size,
       [`btn-block`]: block,
       [`btn-outline-${color}`]: outline && !!color,
+      [`btn-ghost-${color}`]: ghost && !!color,
       [`btn-link`]: link,
       disabled: rest.disabled,
-      [`btn-${color}`]: !!color && !outline,
+      [`btn-${color}`]: !!color && !outline && !ghost,
       [`btn-${social}`]: !!social,
       "btn-square": square,
       "btn-pill": pill,
       "btn-icon": !children,
       "btn-loading": loading,
+      "dropdown-toggle-split": isDropdownToggle && !children,
       "dropdown-toggle": isDropdownToggle,
       "btn-option": isOption,
+      active: active,
     },
     className
   );

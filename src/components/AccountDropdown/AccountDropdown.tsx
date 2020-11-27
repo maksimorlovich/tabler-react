@@ -72,17 +72,15 @@ export function AccountDropdown({
     <Dropdown
       as={Nav.Item}
       link={false}
-      triggerClassName="d-flex align-items-center py-0 px-lg-0 px-2 text-color ml-2"
+      triggerClassName="d-flex lh-1 text-reset p-0"
       triggerAs={Nav.Link}
       triggerContent={
         <React.Fragment>
           {avatarURL && <Avatar imageURL={avatarURL} />}
-          <span className="ml-2 d-none d-lg-block leading-none">
-            <span>{name}</span>
-            <span className="text-muted d-block mt-1 text-h6">
-              {description}
-            </span>
-          </span>
+          <div className="d-none d-xl-block pl-2">
+            <div>{name}</div>
+            <div className="mt-1 small text-muted">{description}</div>
+          </div>
         </React.Fragment>
       }
       position="bottom-end"

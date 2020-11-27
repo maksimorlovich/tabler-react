@@ -14,15 +14,11 @@ const SiteLogo = ({ className, ...props }: SiteLogoProps) => {
   const _className = cn("navbar-brand", className);
   return (
     <a className={_className} href={props.href} {...props}>
-      <img
-        src={props.src}
-        className="d-none d-md-block navbar-brand-logo"
-        alt={props.alt}
-      />
+      <img src={props.src} className="navbar-brand-image" alt={props.alt} />
       {props.srcSmall && (
         <img
           src={props.srcSmall}
-          className="d-md-none navbar-brand-logo"
+          className="navbar-brand-image"
           alt={props.alt}
         />
       )}

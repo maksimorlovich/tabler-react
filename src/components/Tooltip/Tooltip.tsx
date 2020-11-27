@@ -16,13 +16,14 @@ export interface TooltipProps {
   /**
    * This is the text content of the Tooltip.
    */
-  content: string;
+  content: string | React.ReactNode;
   /**
    * This is the placement of the Tooltip (top, bottom, left, right).
    */
   placement?: any;
   type?: "link";
   arrow?: boolean;
+  clickable?: boolean;
 }
 
 const Tooltip = function({
@@ -31,6 +32,7 @@ const Tooltip = function({
   placement,
   content,
   arrow = true,
+  clickable = false,
 }: TooltipProps) {
   const [isShown, setIsShown] = useState(false);
 
@@ -44,10 +46,17 @@ const Tooltip = function({
     setIsShown(false);
   };
 
+  const _handleTriggerOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setIsShown(s => !s);
+  };
+
   const classes = cn(
-    "tooltip",
-    placement && "bs-tooltip-" + placement,
+    "popover",
+    placement && "bs-popover-" + placement,
     "show",
+    // "bg-red",
+    // "fade",
     className
   );
 
@@ -64,8 +73,9 @@ const Tooltip = function({
         {({ ref }: ReferenceChildrenProps) => {
           const referenceProps = {
             ref: ref,
-            onMouseEnter: _handleTriggerOnMouseEnter,
-            onMouseLeave: _handleTriggerOnMouseLeave,
+            onClick: clickable ? _handleTriggerOnClick : null,
+            onMouseEnter: !clickable ? _handleTriggerOnMouseEnter : null,
+            onMouseLeave: !clickable ? _handleTriggerOnMouseLeave : null,
           };
           return (
             typeof children !== "undefined" &&
@@ -81,8 +91,9 @@ const Tooltip = function({
         >
           {({
             ref,
-            style: { opacity, ...style },
+            style, //: { opacity, ...style },
             placement,
+            arrowProps,
           }: PopperChildrenProps) => {
             return (
               <div
@@ -91,8 +102,15 @@ const Tooltip = function({
                 style={style}
                 ref={ref}
               >
-                {arrow && <div className={arrowClasses} />}
-                <div className="tooltip-inner">{content}</div>
+                {arrow && (
+                  <div
+                    className="popover-arrow"
+                    ref={arrowProps.ref}
+                    data-placement={placement}
+                    style={arrowProps.style}
+                  />
+                )}
+                <div className="popover-body">{content}</div>
               </div>
             );
           }}

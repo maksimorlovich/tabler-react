@@ -12,21 +12,19 @@ type Props = {
 };
 
 function PageContent({ className, children, title, subTitle, options }: Props) {
-  const classes = cn("page-content d-flex flex-fill max-w-full", className);
+  const classes = cn("content", className);
   return (
     <div className={classes}>
-      <div className="flex-fill px-lg-2 mw-100">
-        <Container className="my-4">
-          {(title || subTitle || options) && (
-            <PageHeader title={title} subTitle={subTitle} options={options} />
-          )}
-          {children}
-        </Container>
-      </div>
+      {/* <div className="flex-fill px-lg-2 mw-100"> */}
+      <Container expand="xl">
+        {(title || subTitle || options) && (
+          <PageHeader title={title} subTitle={subTitle} options={options} />
+        )}
+        {children}
+      </Container>
     </div>
+    // </div>
   );
 }
-
-
 
 export default PageContent;

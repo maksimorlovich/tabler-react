@@ -22,7 +22,7 @@ function PricingCardButton({
   to,
   onClick,
 }: Props) {
-  const classes = cn("text-center", "mt-6");
+  const classes = cn("text-center", "mt-4");
   const Component = RootComponent || "a";
   const componentClasses = cn(
     "btn",
@@ -61,7 +61,5 @@ function PricingCardButton({
     </div>
   );
 }
-
-
 
 export default PricingCardButton;

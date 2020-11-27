@@ -13,19 +13,16 @@ export interface Props extends TablerComponent, FormInputProps {
 }
 
 function FormCheckbox({ className, label, isInline, ...rest }: Props) {
-  const classes = cn(
-    "custom-control custom-checkbox",
-    { "custom-control-inline": isInline },
-    className
-  );
+  const classes = cn("form-check-input", className);
+
   const inputComponent = (
     <FormInput type="checkbox" className={classes} {...rest} />
   );
 
   return label ? (
-    <label className={classes}>
+    <label className="form-check">
       {inputComponent}
-      <span className="custom-control-label">{label}</span>
+      <span className="form-check-label">{label}</span>
     </label>
   ) : (
     inputComponent

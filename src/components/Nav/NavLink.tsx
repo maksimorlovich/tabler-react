@@ -12,6 +12,7 @@ export interface NavLinkProps extends TablerComponent {
    */
   RootComponent?: React.ElementType;
   active?: boolean;
+  iconPrefix?: string;
   icon?: string;
   to?: string;
   hasSubNav?: boolean;
@@ -20,6 +21,7 @@ export interface NavLinkProps extends TablerComponent {
   title?: React.ReactNode;
   collapsed?: boolean;
   isToggle?: boolean;
+  subitem?: boolean;
   [key: string]: any;
 }
 
@@ -29,6 +31,7 @@ export const NavLink = forwardRef(function(
     className,
     RootComponent,
     as = El.A,
+    iconPrefix = "fe",
     icon,
     active = false,
     hasSubNav,
@@ -36,13 +39,16 @@ export const NavLink = forwardRef(function(
     title,
     collapsed,
     isToggle,
+    subitem = false,
     ...props
   }: NavLinkProps,
   ref: React.Ref<any>
 ) {
   const classes = cn(
     {
-      "nav-link": true,
+      "nav-link": !subitem,
+      "dropdown-toggle": isToggle,
+      "dropdown-item": subitem,
       active: active,
       collapse: isToggle && collapsed,
       show: isToggle && collapsed,
@@ -62,7 +68,7 @@ export const NavLink = forwardRef(function(
     >
       {icon && (
         <React.Fragment>
-          <Icon name={icon} />{" "}
+          <Icon prefix={iconPrefix} name={icon} />{" "}
         </React.Fragment>
       )}
       {title && <NavLinkTitle>{title}</NavLinkTitle>}

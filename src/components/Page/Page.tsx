@@ -9,10 +9,11 @@ export interface PageProps
     Omit<HTMLPropsWithoutRef<HTMLDivElement>, "as"> {}
 
 function Page({ className, children, ...rest }: PageProps) {
-  const classes = cn("page d-flex h-auto min-h-screen", className);
+  const classes = cn("page", className);
   return (
     <El.Div className={classes} {...rest}>
-      <div className="d-flex flex-fill">{children}</div>
+      {/* <div className="d-flex flex-fill">{children}</div> */}
+      {children}
     </El.Div>
   );
 }

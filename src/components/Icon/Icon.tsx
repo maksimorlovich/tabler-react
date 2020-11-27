@@ -44,10 +44,11 @@ function Icon({
   thin,
   ...rest
 }: IconProps) {
+  const isFE = prefixFromProps === "fe";
   const prefix = (payment && "payment") || (flag && "flag") || prefixFromProps;
   const classes = cn(
-    "icon",
     {
+      icon: isFE,
       [prefix]: true,
       [`${prefix}-${name}`]: true,
       "icon-thin": thin,

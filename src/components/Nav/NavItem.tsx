@@ -25,7 +25,11 @@ export interface NavItemProps extends TablerComponent {
    */
   to?: string;
   /**
-   * @deprecated use 'linkProps'
+   * Icon prefix (fe, fa, etc)
+   */
+  iconPrefix?: string;
+  /**
+   * Icon name
    */
   icon?: string;
   /**
@@ -58,6 +62,10 @@ export interface NavItemProps extends TablerComponent {
    */
   link?: boolean;
   subNav?: React.ReactNode;
+  /**
+   * Is this NavItem a subitem?
+   */
+  subitem?: boolean;
   [key: string]: any;
 }
 
@@ -73,6 +81,7 @@ export const NavItem: React.RefForwardingComponent<
     href,
     to,
     type,
+    iconPrefix = "fe",
     icon,
     hasSubNav: forcedHasSubNav,
     active,
@@ -86,6 +95,7 @@ export const NavItem: React.RefForwardingComponent<
     linkProps,
     link = true,
     subNav,
+    subitem = false,
     ...props
   }: NavItemProps,
   ref: React.Ref<any>
@@ -103,6 +113,7 @@ export const NavItem: React.RefForwardingComponent<
     ...linkProps,
     href,
     to,
+    iconPrefix,
     icon,
     active,
   };
@@ -120,6 +131,7 @@ export const NavItem: React.RefForwardingComponent<
       collapsed={(subNav || hasSubNav) && isOpen === false}
       onClick={_handleOnClick}
       isToggle={subNav || hasSubNav}
+      subitem={subitem}
       {..._linkProps}
     >
       {value || children}
@@ -130,7 +142,8 @@ export const NavItem: React.RefForwardingComponent<
 
   const wrapperClasses = cn(
     {
-      "nav-item": true,
+      "nav-item": !subitem,
+      dropdown: hasSubNav,
       show: isOpen,
     },
     className
@@ -151,7 +164,9 @@ export const NavItem: React.RefForwardingComponent<
           <NavSubNav show={isOpen}>
             {subItems ||
               (subItemsObjects &&
-                subItemsObjects.map((a, i) => <NavItem key={i} {...a} />)) ||
+                subItemsObjects.map((a, i) => (
+                  <NavItem subitem={true} key={i} {...a} />
+                ))) ||
               children}
           </NavSubNav>
         )}

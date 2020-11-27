@@ -33,8 +33,8 @@ function FormSelect({
 }: FormSelectProps) {
   const classes = cn(
     {
-      "form-control": true,
-      "custom-select": true,
+      "form-select": true,
+      // "custom-select": true,
       "is-valid": valid,
       "state-valid": tick,
       "is-invalid": invalid || !!error,

@@ -25,8 +25,9 @@ export function NavBar({
   const classes = cn(
     "navbar",
     {
-      "navbar-side": isSide,
+      "navbar-vertical": isSide,
       "navbar-dark": isDark,
+      "navbar-light": !isDark,
       "navbar-right": side === "right",
       [`navbar-expand-${expand}`]: expand,
     },

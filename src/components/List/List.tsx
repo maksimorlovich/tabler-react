@@ -14,14 +14,17 @@ export interface ListProps
   unstyled?: boolean;
   seperated?: boolean;
   inline?: boolean;
+  hoverable?: boolean;
 }
 
 function List({
   className,
+  as,
   children,
   unstyled,
   seperated,
   inline,
+  hoverable,
   ...rest
 }: ListProps) {
   const classes = cn(
@@ -30,13 +33,15 @@ function List({
       "list-unstyled": unstyled,
       "list-seperated": seperated,
       "list-inline": inline,
+      "list-hoverable": hoverable,
     },
     className
   );
+  const Component = as || El.Ul;
   return (
-    <El.Ul className={classes} {...rest}>
+    <Component className={classes} {...rest}>
       {children}
-    </El.Ul>
+    </Component>
   );
 }
 

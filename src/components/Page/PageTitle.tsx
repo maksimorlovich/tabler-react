@@ -9,7 +9,7 @@ function PageTitle({ className, children, ...rest }: PageTitleProps) {
   const classes = cn("page-title-box", className);
   return (
     <El.Div className={classes} {...rest}>
-      <El.H1 className="page-title">{children}</El.H1>
+      <El.H2 className="page-title">{children}</El.H2>
     </El.Div>
   );
 }

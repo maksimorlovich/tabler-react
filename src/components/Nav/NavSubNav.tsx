@@ -20,14 +20,15 @@ function NavSubNav({
   show = false,
   ...rest
 }: NavSubNavProps) {
-  const classes = cn(
-    { "navbar-subnav": true, collapse: true, collapsed, show },
-    className
-  );
+  // const classes = cn(
+  //   { "navbar-subnav": true, collapse: true, collapsed, show },
+  //   className
+  // );
+  const classes = cn({ "dropdown-menu": true, show }, className);
   return (
-    <Component className={classes} {...rest}>
-      <ul className="nav">{children}</ul>
-    </Component>
+    // <Component className={classes} {...rest}>
+    <ul className={classes}>{children}</ul>
+    // </Component>
   );
 }
 

@@ -23,13 +23,13 @@ function FormGroup({
   ...rest
 }: FormGroupProps) {
   const classes = cn("form-group", className);
+  const labelClasses = cn({
+    required: isRequired,
+  });
   return (
     <El.Div className={classes} {...rest}>
       {!label ? null : typeof label === "string" ? (
-        <FormLabel>
-          {label}
-          {isRequired && <span className="form-required">*</span>}
-        </FormLabel>
+        <FormLabel className={labelClasses}>{label}</FormLabel>
       ) : (
         label
       )}

@@ -8,6 +8,7 @@ import PricingCardAttributeList from "./PricingCardAttributeList";
 import PricingCardAttributeItem from "./PricingCardAttributeItem";
 import PricingCardButton from "./PricingCardButton";
 import { TablerComponent } from "../../types";
+import Ribbon from "../Ribbon";
 
 interface Props extends TablerComponent {
   active?: boolean;
@@ -17,7 +18,10 @@ interface Props extends TablerComponent {
 function PricingCard({ className, children, active = false, category }: Props) {
   const cardBodyClassName = cn("text-center");
   const cardStatusClassName = cn("card-status", "bg-green");
-  const cardStatus = <div className={cardStatusClassName} />;
+  // const cardStatus = <div className={cardStatusClassName} />;
+  const cardStatus = (
+    <Ribbon bookmark color="green" position="top-right" icon="star" />
+  );
   const cardCategory = <PricingCardCategory>{category}</PricingCardCategory>;
   // TODO: Add component logic.
   return (

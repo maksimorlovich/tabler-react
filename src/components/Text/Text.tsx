@@ -50,6 +50,7 @@ export interface TextProps<AS extends HTMLElement = HTMLDivElement>
   size?: string;
   wrap?: boolean;
   muted?: boolean;
+  truncate?: boolean;
 }
 
 const Text = function<AS extends HTMLElement = HTMLDivElement>({
@@ -61,6 +62,7 @@ const Text = function<AS extends HTMLElement = HTMLDivElement>({
   size = "",
   wrap,
   muted,
+  truncate,
   align: alignFromProps,
   left,
   center,
@@ -119,6 +121,7 @@ const Text = function<AS extends HTMLElement = HTMLDivElement>({
       [`text-${color}`]: color,
       [`${size}`]: size,
       "text-muted": muted,
+      "text-truncate": truncate,
       [`text-${align}`]: align,
       [`text-${transform}`]: transform,
       [`tracking-${tracking}`]: tracking,

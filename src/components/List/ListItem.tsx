@@ -4,14 +4,18 @@ import { ELProps } from "../../helpers/makeHtmlElement";
 import El from "../El/El";
 import { HTMLPropsWithoutRef } from "../../types";
 
-interface ListItemProps
-  extends ELProps,
-    HTMLPropsWithoutRef<HTMLLIElement> {
+interface ListItemProps extends ELProps, HTMLPropsWithoutRef<HTMLLIElement> {
   inline?: boolean;
 }
 
 function ListItem({ className, children, inline, ...rest }: ListItemProps) {
-  const classes = cn({ "list-inline-item": inline }, className);
+  const classes = cn(
+    {
+      "list-item": !inline,
+      "list-inline-item": inline,
+    },
+    className
+  );
   return (
     <El.Li className={classes} {...rest}>
       {children}

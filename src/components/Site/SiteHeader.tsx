@@ -56,23 +56,23 @@ const SiteHeader = ({
   accountDropdown: accountDropdownFromProps,
   navItems,
   onMenuToggleClick,
-  searchBar,
-}: SiteHeaderProps) => {
+}: // searchBar,
+SiteHeaderProps) => {
   return (
     <Nav.Bar expand="md" as="header">
-      <Container className={align}>
+      <Container expand="xl" className={align}>
         {children || (
           <React.Fragment>
-            <a className="navbar-toggler" onClick={onMenuToggleClick}>
+            <button className="navbar-toggler" onClick={onMenuToggleClick}>
               <span className="navbar-toggler-icon" />
-            </a>
+            </button>
             <SiteLogo
               className="text-inherit mr-md-3"
               href={href}
               alt={alt}
               src={imageURL}
             />
-            {searchBar && (
+            {/* {searchBar && (
               <El.Div
                 ml={{ xs: 0, md: 8 }}
                 mr="auto"
@@ -81,14 +81,14 @@ const SiteHeader = ({
               >
                 {searchBar}
               </El.Div>
-            )}
+            )} */}
             <Nav
               isMenu={true}
-              className="align-items-center order-1 order-lg-2"
+              className="align-items-center flex-row order-1 order-lg-2"
             >
               {navItems}
               {notificationsTrayFromProps && (
-                <Nav.Item link={false} className="d-none d-md-flex">
+                <Nav.Item link={false} className="d-none d-md-flex mr-3">
                   <Notification.Tray {...notificationsTrayFromProps} />
                 </Nav.Item>
               )}
