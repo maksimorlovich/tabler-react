@@ -38,8 +38,8 @@ const defaultNotificationsObjects = [
 
 const accountDropdownProps = {
   avatarURL: "./demo/faces/female/25.jpg",
-  name: "Jane Pearson",
-  description: "Administrator",
+  name: "Paweł Kuna",
+  description: "UI Designer",
   options: [
     { icon: "user", value: "Profile" },
     { icon: "settings", value: "Settings" },
@@ -63,6 +63,7 @@ const SiteHeader = function() {
 
   return (
     <Site.Header
+      // align="top"
       href="/"
       alt="Tabler React"
       imageURL="./demo/brand/tabler.svg"
@@ -92,15 +93,15 @@ const SiteHeader = function() {
         unread: unreadCount,
       }}
       accountDropdown={accountDropdownProps}
-      searchBar={
-        <Form.Input
-          icon="search"
-          position="prepend"
-          placeholder="Search"
-          tabIndex={-1}
-          light
-        />
-      }
+      // searchBar={
+      //   <Form.Input
+      //     icon="search"
+      //     position="prepend"
+      //     placeholder="Search"
+      //     tabIndex={-1}
+      //     light
+      //   />
+      // }
     />
   );
 };

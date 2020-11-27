@@ -154,9 +154,11 @@ const SiteNav = function() {
   return (
     <Site.Nav
       logoURL="./demo/brand/tabler.svg"
-      isSide={true}
-      side="right"
+      isSide={false}
+      side="left"
       itemsObjects={navBarItems}
+      withSearchForm={false}
+      collapse={false}
     />
   );
 };

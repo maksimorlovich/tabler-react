@@ -9,7 +9,7 @@ function PricingCardsPage() {
     <SiteWrapper>
       <Page.Content title="Pricing cards">
         <Grid.Row>
-          <Grid.Col sm={6} lg={3}>
+          <Grid.Col ignoreCol sm={6} lg={3}>
             <PricingCard>
               <PricingCard.Category>{"Free"}</PricingCard.Category>
               <PricingCard.Price>{"$0"} </PricingCard.Price>
@@ -31,11 +31,14 @@ function PricingCardsPage() {
                   {"Twitter API"}
                 </PricingCard.AttributeItem>
               </PricingCard.AttributeList>
-              <PricingCard.Button> {"Choose plan"} </PricingCard.Button>
+              <PricingCard.Button href="#">
+                {" "}
+                {"Choose plan"}{" "}
+              </PricingCard.Button>
             </PricingCard>
           </Grid.Col>
 
-          <Grid.Col sm={6} lg={3}>
+          <Grid.Col ignoreCol sm={6} lg={3}>
             <PricingCard active>
               <PricingCard.Category>{"Premium"}</PricingCard.Category>
               <PricingCard.Price>{"$49"} </PricingCard.Price>
@@ -57,11 +60,13 @@ function PricingCardsPage() {
                   {"Twitter API"}
                 </PricingCard.AttributeItem>
               </PricingCard.AttributeList>
-              <PricingCard.Button active>{"Choose plan"} </PricingCard.Button>
+              <PricingCard.Button href="#" active>
+                {"Choose plan"}{" "}
+              </PricingCard.Button>
             </PricingCard>
           </Grid.Col>
 
-          <Grid.Col sm={6} lg={3}>
+          <Grid.Col ignoreCol sm={6} lg={3}>
             <PricingCard>
               <PricingCard.Category>{"Enterprise"}</PricingCard.Category>
               <PricingCard.Price>{"$99"} </PricingCard.Price>
@@ -83,11 +88,11 @@ function PricingCardsPage() {
                   {"Twitter API"}
                 </PricingCard.AttributeItem>
               </PricingCard.AttributeList>
-              <PricingCard.Button>{"Choose plan"} </PricingCard.Button>
+              <PricingCard.Button href="#">{"Choose plan"} </PricingCard.Button>
             </PricingCard>
           </Grid.Col>
 
-          <Grid.Col sm={6} lg={3}>
+          <Grid.Col ignoreCol sm={6} lg={3}>
             <PricingCard>
               <PricingCard.Category>{"Unlimited"}</PricingCard.Category>
               <PricingCard.Price>{"$139"} </PricingCard.Price>
@@ -109,7 +114,7 @@ function PricingCardsPage() {
                   {"Twitter API"}
                 </PricingCard.AttributeItem>
               </PricingCard.AttributeList>
-              <PricingCard.Button>{"Choose plan"} </PricingCard.Button>
+              <PricingCard.Button href="#">{"Choose plan"} </PricingCard.Button>
             </PricingCard>
           </Grid.Col>
         </Grid.Row>
