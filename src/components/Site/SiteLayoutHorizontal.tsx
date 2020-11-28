@@ -22,6 +22,7 @@ const SiteLayoutHorizontal = ({
   itemsObjects,
   searchBar,
   logoURL,
+  title,
 
   align,
   href,
@@ -60,6 +61,7 @@ SiteLayoutProps) => {
               href={href}
               alt={alt}
               src={logoURL}
+              title={title}
             />
             <Nav
               isMenu={true}

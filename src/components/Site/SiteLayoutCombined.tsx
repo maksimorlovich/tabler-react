@@ -22,6 +22,7 @@ const SiteLayoutCombined = ({
   itemsObjects,
   searchBar,
   logoURL,
+  title,
 
   align,
   href,

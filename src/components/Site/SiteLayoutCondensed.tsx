@@ -22,6 +22,7 @@ const SiteLayoutCondensed = ({
   itemsObjects,
   searchBar,
   logoURL,
+  title,
 
   align,
   href,

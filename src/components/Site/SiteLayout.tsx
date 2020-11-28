@@ -22,6 +22,11 @@ export default interface SiteLayoutProps {
    */
   logoURL?: string;
 
+  /**
+   * Title to show in-place or next to logo
+   */
+  title?: string;
+
   // header items
   /**
    * header alignment

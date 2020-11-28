@@ -22,6 +22,7 @@ const SiteLayoutVertical = ({
   itemsObjects,
   searchBar,
   logoURL,
+  title,
 
   align,
   href,
