@@ -31,6 +31,7 @@ interface Props {
   isDropdownToggle?: boolean;
   to?: string;
   isOption?: boolean;
+  ignoreBtn?: boolean;
   /**
    * @depreacted use ref
    */
@@ -60,6 +61,7 @@ const Button = forwardRef(function<AS extends HTMLElement = HTMLButtonElement>(
     active,
     isDropdownToggle,
     isOption,
+    ignoreBtn = false,
     RootComponent,
     as = El.Button,
     rootRef,
@@ -69,7 +71,7 @@ const Button = forwardRef(function<AS extends HTMLElement = HTMLButtonElement>(
 ) {
   const classes = cn(
     {
-      btn: true,
+      btn: !ignoreBtn,
       [`btn-${size}`]: !!size,
       [`btn-block`]: block,
       [`btn-outline-${color}`]: outline && !!color,

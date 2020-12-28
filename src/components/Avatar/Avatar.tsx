@@ -36,6 +36,14 @@ export interface Props
    * The background and font color of the circle
    */
   color?: colors;
+  /**
+   * Show upload border
+   */
+  upload?: boolean;
+  /**
+   * Avatar is fully round
+   */
+  rounded?: boolean;
 }
 
 /**
@@ -51,17 +59,21 @@ export function Avatar({
   placeholder,
   icon,
   color,
+  upload,
+  rounded,
   ...rest
 }: Props) {
   const classes = cn(
     {
       avatar: true,
-      [`avatar-${size}`]: !!size,
-      [`bg-${color}`]: !!color,
+      rounded: rounded,
+      "avatar-upload": upload,
+      [`avatar-${size}`]: !!size && !upload,
+      [`bg-${color}`]: !!color && !upload,
     },
     className
   );
-  const _icon = icon || placeholder ? "user" : null;
+  const _icon = icon || (placeholder ? "home" : null);
 
   return (
     <El.Span

@@ -84,6 +84,11 @@ const navBarItems = [
         linkAs: ReactRouterNavLink,
       },
       {
+        value: "Modals",
+        to: "/modals",
+        linkAs: ReactRouterNavLink,
+      },
+      {
         value: "Tables",
         to: "/tables",
         linkAs: ReactRouterNavLink,

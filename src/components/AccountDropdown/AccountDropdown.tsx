@@ -20,9 +20,13 @@ type defaultOptionsType = { [K in defaultOptionType]: Object | itemObject };
 
 export interface Props extends DropdownProps {
   /**
-   * URl of the avatar image
+   * URL of the avatar image
    */
   avatarURL?: string;
+  /**
+   * Avatar initials in case image url is missing
+   */
+  initials?: string;
   /**
    * The account name to be displayed
    */
@@ -60,6 +64,7 @@ const itemsFromDefaultOptions = (options: optionsType) =>
  */
 export function AccountDropdown({
   avatarURL,
+  initials,
   name,
   description,
   options = [],
@@ -76,7 +81,9 @@ export function AccountDropdown({
       triggerAs={Nav.Link}
       triggerContent={
         <React.Fragment>
-          {avatarURL && <Avatar imageURL={avatarURL} />}
+          {(avatarURL || initials) && (
+            <Avatar imageURL={avatarURL}>{initials}</Avatar>
+          )}
           <div className="d-none d-xl-block pl-2">
             <div>{name}</div>
             <div className="mt-1 small text-muted">{description}</div>

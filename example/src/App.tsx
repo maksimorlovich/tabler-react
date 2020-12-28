@@ -28,6 +28,7 @@ import BlogPage from "./components/BlogPage";
 import ButtonsPage from "./interface/ButtonsPage";
 import EmptyPage from "./interface/EmptyPage";
 import TablesPage from "./interface/TablesPage";
+import ModalsPage from "./interface/ModalsPage";
 import ListsPage from "./interface/ListsPage";
 
 import "tabler-react/dist/Tabler.css";
@@ -49,6 +50,7 @@ function App(props: Props) {
           <Route exact path="/blog" component={BlogPage} />
           <Route exact path="/empty" component={EmptyPage} />
           <Route exact path="/buttons" component={ButtonsPage} />
+          <Route exact path="/modals" component={ModalsPage} />
           <Route exact path="/tables" component={TablesPage} />
           <Route exact path="/lists" component={ListsPage} />
           <Route exact path="/cards" component={CardsDesignPage} />

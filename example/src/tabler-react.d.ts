@@ -1445,6 +1445,14 @@ declare module "components/Avatar/Avatar" {
      * The background and font color of the circle
      */
     color?: colors;
+    /**
+     * Show upload border
+     */
+    upload?: boolean;
+    /**
+     * Avatar is fully round
+     */
+    rounded?: boolean;
   }
   /**
    * Renders a single circular avatar
@@ -1459,6 +1467,8 @@ declare module "components/Avatar/Avatar" {
     placeholder,
     icon,
     color,
+    upload,
+    rounded,
     ...rest
   }: Props): JSX.Element;
   declare namespace Avatar {
@@ -1658,6 +1668,7 @@ declare module "components/Button/Button" {
     isDropdownToggle?: boolean;
     to?: string;
     isOption?: boolean;
+    ignoreBtn?: boolean;
     /**
      * @depreacted use ref
      */
@@ -2124,11 +2135,11 @@ declare module "components/Nav/NavItem" {
      */
     to?: string;
     /**
-     * @deprecated use 'linkProps'
+     * Icon prefix (fe, fa, etc)
      */
     iconPrefix?: string;
     /**
-     * @deprecated use 'linkProps'
+     * Icon name
      */
     icon?: string;
     /**
@@ -2432,9 +2443,13 @@ declare module "components/AccountDropdown/AccountDropdown" {
   type optionsType = Array<defaultOptionType | itemObject>;
   export interface Props extends DropdownProps {
     /**
-     * URl of the avatar image
+     * URL of the avatar image
      */
     avatarURL?: string;
+    /**
+     * Avatar initials in case image url is missing
+     */
+    initials?: string;
     /**
      * The account name to be displayed
      */
@@ -2458,6 +2473,7 @@ declare module "components/AccountDropdown/AccountDropdown" {
    */
   export function AccountDropdown({
     avatarURL,
+    initials,
     name,
     description,
     options,
@@ -4380,6 +4396,150 @@ declare module "components/GalleryCard/index" {
   import GalleryCard from "components/GalleryCard/GalleryCard";
   export { GalleryCard as default };
 }
+declare module "components/Modal/ModalContext" {
+  import React from "react";
+  type ModalContext = {
+    onDismiss: () => void;
+  };
+  const _default_1: React.Context<ModalContext>;
+  export default _default_1;
+}
+declare module "helpers/scrollbarSize" {
+  const scrollBarSize: () => number;
+  export default scrollBarSize;
+}
+declare module "components/Modal/Modal" {
+  import React from "react";
+  import { ELProps } from "helpers/makeHtmlElement";
+  import { HTMLPropsWithoutRef } from "types/index";
+  import { colors } from "colors";
+  export interface ModalProps
+    extends ELProps,
+      HTMLPropsWithoutRef<HTMLDivElement> {
+    /**
+     * Show/hide the modal
+     */
+    show?: boolean;
+    /**
+     * Modal dismiss handler
+     */
+    onDismiss: () => void;
+    /**
+     * Size of the modal: small, large, full-width, automatic
+     */
+    modalSize?: "sm" | "lg" | "full-width" | "default";
+    /**
+     * Scrollable content
+     */
+    scrollable?: boolean;
+    /**
+     * Should there be a close button, when modal header is not present
+     */
+    closeButton?: boolean;
+    /**
+     * Color of the status bar, if any
+     */
+    statusBarColor?: colors;
+  }
+  interface State {
+    originalPaddingRight: number;
+    newPaddingRight: number;
+  }
+  class Modal extends React.Component<ModalProps, State> {
+    constructor(props: ModalProps);
+    handleDismiss: () => void;
+    componentWillUnmount(): void;
+    render(): JSX.Element | null;
+  }
+  /** @component */
+  export default Modal;
+}
+declare module "components/Modal/ModalHeader" {
+  import { ELProps } from "helpers/makeHtmlElement";
+  import { HTMLPropsWithoutRef } from "types/index";
+  export interface ModalHeaderProps
+    extends ELProps,
+      HTMLPropsWithoutRef<HTMLDivElement> {
+    title?: string;
+    closeButton?: boolean;
+  }
+  function ModalHeader({
+    className,
+    children,
+    title,
+    closeButton,
+    ...rest
+  }: ModalHeaderProps): JSX.Element;
+  export default ModalHeader;
+}
+declare module "components/Modal/ModalBody" {
+  import { ELProps } from "helpers/makeHtmlElement";
+  import { HTMLPropsWithoutRef } from "types/index";
+  export interface ModalBodyProps
+    extends ELProps,
+      HTMLPropsWithoutRef<HTMLDivElement> {}
+  function ModalBody({
+    className,
+    children,
+    ...props
+  }: ModalBodyProps): JSX.Element;
+  export default ModalBody;
+}
+declare module "components/Modal/ModalFooter" {
+  import { ELProps } from "helpers/makeHtmlElement";
+  import { HTMLPropsWithoutRef } from "types/index";
+  export interface ModalFooterProps
+    extends ELProps,
+      HTMLPropsWithoutRef<HTMLDivElement> {
+    closeButton?: boolean;
+  }
+  function ModalFooter({
+    className,
+    children,
+    closeButton,
+    ...rest
+  }: ModalFooterProps): JSX.Element;
+  export default ModalFooter;
+}
+declare module "components/Modal/ModalButton" {
+  import { MouseEventHandler } from "react";
+  import { HTMLPropsWithoutRef } from "types/index";
+  import { ButtonProps } from "components/Button/Button";
+  interface Props<T> {
+    /**
+     * Default button click handler, dismisses the modal immediately.
+     */
+    onClick?: MouseEventHandler<T>;
+    /**
+     * Custom click handler expects a promise true/false whether to dismiss the modal. Useful for async validation, etc.
+     */
+    onClickDismiss?: () => Promise<boolean>;
+  }
+  export interface ModalButtonProps<AS extends HTMLElement = HTMLButtonElement>
+    extends Props<AS>,
+      ButtonProps<AS>,
+      Omit<HTMLPropsWithoutRef<AS>, "as" | "color" | "size"> {}
+  function ModalButton<AS extends HTMLElement = HTMLButtonElement>({
+    onClick,
+    onClickDismiss,
+    ...rest
+  }: ModalButtonProps<AS>): JSX.Element;
+  export default ModalButton;
+}
+declare module "components/Modal/index" {
+  import Modal from "components/Modal/Modal";
+  import ModalHeader from "components/Modal/ModalHeader";
+  import ModalBody from "components/Modal/ModalBody";
+  import ModalFooter from "components/Modal/ModalFooter";
+  import ModalButton from "components/Modal/ModalButton";
+  const CompoundModal: typeof Modal & {
+    Header: typeof ModalHeader;
+    Body: typeof ModalBody;
+    Footer: typeof ModalFooter;
+    Button: typeof ModalButton;
+  };
+  export { CompoundModal as default };
+}
 declare module "components/Page/Page" {
   import { ELProps } from "helpers/makeHtmlElement";
   import { HTMLPropsWithoutRef } from "types/index";
@@ -4769,6 +4929,7 @@ declare module "components/Site/SiteLogo" {
     src?: string;
     srcSmall?: string;
     alt?: string;
+    title?: string;
   }
   const SiteLogo: ({ className, ...props }: SiteLogoProps) => JSX.Element;
   export default SiteLogo;
@@ -5129,6 +5290,10 @@ declare module "components/Site/SiteLayout" {
      */
     logoURL?: string;
     /**
+     * Title to show in-place or next to logo
+     */
+    title?: string;
+    /**
      * header alignment
      */
     align?: string;
@@ -5160,6 +5325,7 @@ declare module "components/Site/SiteLayoutCombined" {
     itemsObjects,
     searchBar,
     logoURL,
+    title,
     align,
     href,
     alt,
@@ -5178,6 +5344,7 @@ declare module "components/Site/SiteLayoutCondensed" {
     itemsObjects,
     searchBar,
     logoURL,
+    title,
     align,
     href,
     alt,
@@ -5196,6 +5363,7 @@ declare module "components/Site/SiteLayoutHorizontal" {
     itemsObjects,
     searchBar,
     logoURL,
+    title,
     align,
     href,
     alt,
@@ -5213,6 +5381,7 @@ declare module "components/Site/SiteLayoutVertical" {
     itemsObjects,
     searchBar,
     logoURL,
+    title,
     align,
     href,
     alt,
@@ -5950,6 +6119,7 @@ declare module "components/index" {
   export { default as List } from "components/List/index";
   export { default as Loader } from "components/Loader/index";
   export { default as Media } from "components/Media/index";
+  export { default as Modal } from "components/Modal/index";
   export * from "components/Nav/index";
   export { default as Notification } from "components/Notification/index";
   export { default as Page } from "components/Page/index";
