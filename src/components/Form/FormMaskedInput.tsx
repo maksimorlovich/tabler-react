@@ -2,9 +2,9 @@ import * as React from "react";
 import cn from "classnames";
 import MaskedInput, { maskArray } from "react-text-mask";
 import getUtilityPropsClasses from "../../helpers/utilityPropsToClassNames";
-import { TablerComponent } from "../../types";
+import { HTMLPropsWithoutRef, TablerComponent } from "../../types";
 
-interface Props extends TablerComponent {
+interface Props extends TablerComponent, HTMLPropsWithoutRef<HTMLInputElement> {
   mask?: maskArray | ((value: string) => maskArray);
   placeholder?: string;
   valid?: boolean;
