@@ -45,8 +45,8 @@ class SimpleFormModal extends React.Component<SimpleFormModalProps, State> {
   };
 
   onDismiss = () => {
-    this.setState({ name: "", emptyName: false });
     this.props.onDismiss();
+    this.setState({ name: "", emptyName: false });
   };
 
   render() {

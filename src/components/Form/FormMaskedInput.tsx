@@ -4,7 +4,7 @@ import MaskedInput, { MaskedInputProps } from "react-text-mask";
 import getUtilityPropsClasses from "../../helpers/utilityPropsToClassNames";
 import { TablerComponent } from "../../types";
 
-interface Props extends MaskedInputProps, TablerComponent {
+export interface Props extends MaskedInputProps, TablerComponent {
   valid?: boolean;
   tick?: boolean;
   invalid?: boolean;
