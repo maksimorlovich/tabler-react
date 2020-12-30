@@ -4,7 +4,9 @@ import MaskedInput, { MaskedInputProps } from "react-text-mask";
 import getUtilityPropsClasses from "../../helpers/utilityPropsToClassNames";
 import { TablerComponent } from "../../types";
 
-export interface Props extends MaskedInputProps, TablerComponent {
+export interface FormMaskedInputProps
+  extends MaskedInputProps,
+    TablerComponent {
   valid?: boolean;
   tick?: boolean;
   invalid?: boolean;
@@ -23,7 +25,7 @@ function FormMaskedInput({
   feedback,
   className,
   ...rest
-}: Props) {
+}: FormMaskedInputProps) {
   const utilityClasses = getUtilityPropsClasses(rest);
   const classes = cn(
     utilityClasses,
